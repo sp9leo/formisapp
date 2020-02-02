@@ -49,6 +49,12 @@ def get_data():
 		{
 			"label": _("Stock"),
 			"items": [
+            {
+					"type": "doctype",
+					"name": "Delivery Note",
+					"onboard": 1,
+					"dependencies": ["Item", "Customer"],
+				},
 				{
 					"type": "doctype",
 					"label": _("Item"),
@@ -56,11 +62,19 @@ def get_data():
 					"description": _("Add your own translations")
 				},
 				{
-					"type": "doctype",
-					"label": _("Stock Balance"),
+					"type": "report",
+					"is_query_report": True,
 					"name": "Stock Balance",
-					"description": _("Add your own Tag Categories")
-				}
+					"doctype": "Stock Ledger Entry",
+					"onboard": 1,
+					"dependencies": ["Item"],
+				},
+                {
+					"type": "page",
+					"name": "stock-balance",
+					"label": _("Stock Summary"),
+					"dependencies": ["Item"],
+                    }
 			]
 		}
 	]

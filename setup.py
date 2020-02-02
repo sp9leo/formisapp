@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 from formis2 import __version__ as version
 
 setup(
-	name='formis2',
+	name='Formis',
 	version=version,
 	description='formis new app',
 	author='formis',

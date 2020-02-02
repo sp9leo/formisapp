@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 from . import __version__ as app_version
 
-app_name = "FormisApp"
-app_title = "Formis"
+app_name = "formis2"
+app_title = "Formis2"
 app_publisher = "formis"
 app_description = "formis new app"
 app_icon = "octicon octicon-file-directory"

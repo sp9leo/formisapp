@@ -2,25 +2,25 @@
 from __future__ import unicode_literals
 from . import __version__ as app_version
 
-app_name = "formis2"
-app_title = "Formis2"
-app_publisher = "formis"
-app_description = "formis new app"
+app_name = "formisapp"
+app_title = "Formis"
+app_publisher = "Formis"
+app_description = "Formis new app 2020"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "info"
+app_email = "formis"
 app_license = "MIT"
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/formis2/css/formis2.css"
-# app_include_js = "/assets/formis2/js/formis2.js"
+# app_include_css = "/assets/formisapp/css/formisapp.css"
+# app_include_js = "/assets/formisapp/js/formisapp.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/formis2/css/formis2.css"
-# web_include_js = "/assets/formis2/js/formis2.js"
+# web_include_css = "/assets/formisapp/css/formisapp.css"
+# web_include_js = "/assets/formisapp/js/formisapp.js"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
@@ -43,7 +43,7 @@ app_license = "MIT"
 # }
 
 # Website user home page (by function)
-# get_website_user_home_page = "formis2.utils.get_home_page"
+# get_website_user_home_page = "formisapp.utils.get_home_page"
 
 # Generators
 # ----------
@@ -54,14 +54,14 @@ app_license = "MIT"
 # Installation
 # ------------
 
-# before_install = "formis2.install.before_install"
-# after_install = "formis2.install.after_install"
+# before_install = "formisapp.install.before_install"
+# after_install = "formisapp.install.after_install"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "formis2.notifications.get_notification_config"
+# notification_config = "formisapp.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -92,38 +92,38 @@ app_license = "MIT"
 
 # scheduler_events = {
 # 	"all": [
-# 		"formis2.tasks.all"
+# 		"formisapp.tasks.all"
 # 	],
 # 	"daily": [
-# 		"formis2.tasks.daily"
+# 		"formisapp.tasks.daily"
 # 	],
 # 	"hourly": [
-# 		"formis2.tasks.hourly"
+# 		"formisapp.tasks.hourly"
 # 	],
 # 	"weekly": [
-# 		"formis2.tasks.weekly"
+# 		"formisapp.tasks.weekly"
 # 	]
 # 	"monthly": [
-# 		"formis2.tasks.monthly"
+# 		"formisapp.tasks.monthly"
 # 	]
 # }
 
 # Testing
 # -------
 
-# before_tests = "formis2.install.before_tests"
+# before_tests = "formisapp.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "formis2.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "formisapp.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "formis2.task.get_dashboard_data"
+# 	"Task": "formisapp.task.get_dashboard_data"
 # }
 

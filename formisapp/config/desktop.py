@@ -6,7 +6,7 @@ def get_data():
 	return [
 		{
 			"module_name": "formis",
-			"color": "green",
+			"color": "grey",
 			"icon": "octicon octicon-home",
 			"type": "module",
 			"label": _("Formis")

@@ -10,11 +10,13 @@ def get_data():
 				{
 					"type": "doctype",
 					"name": "Sales Order",
+                    "onboard": 1,
 					"description": _("Change field properties (hide, readonly, permission etc.)")
 				},
 				{
 					"type": "doctype",
 					"name": "Sales Invoice",
+                    "onboard": 1,
 					"description": _("Add fields to forms.")
 				},
 				{

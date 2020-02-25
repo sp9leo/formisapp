@@ -53,7 +53,7 @@ def get_data():
 			]
 		},
         {
-			"label": _("Stock"),
+			"label": _("Formis"),
 			"items": [
 				{
 					"type": "doctype",

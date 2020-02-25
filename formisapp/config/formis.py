@@ -46,6 +46,31 @@ def get_data():
 					"type": "doctype",
 					"name": "Dashboard Chart Source",
 				},
+                {
+					"type": "doctype",
+					"name": "Delovni Nalog",
+				},
+			]
+		},
+        {
+			"label": _("Stock"),
+			"items": [
+				{
+					"type": "doctype",
+					"name": "Delovni Nalog",
+				},
+				{
+					"type": "doctype",
+					"name": "Delovni Nalog Interni",
+				},
+				{
+					"type": "doctype",
+					"name": "Izdelki Formis",
+				},
+                {
+					"type": "doctype",
+					"name": "Kalkulacija Izdelki",
+				},
 			]
 		},
 		{

@@ -10,11 +10,13 @@ def get_data():
 				{
 					"type": "doctype",
 					"name": "Sales Order",
+                    "onboard": 1,
 					"description": _("Change field properties (hide, readonly, permission etc.)")
 				},
 				{
 					"type": "doctype",
 					"name": "Sales Invoice",
+                    "onboard": 1,
 					"description": _("Add fields to forms.")
 				},
 				{
@@ -43,6 +45,31 @@ def get_data():
 				{
 					"type": "doctype",
 					"name": "Dashboard Chart Source",
+				},
+                {
+					"type": "doctype",
+					"name": "Delovni Nalog",
+				},
+			]
+		},
+        {
+			"label": _("Formis"),
+			"items": [
+				{
+					"type": "doctype",
+					"name": "Delovni Nalog",
+				},
+				{
+					"type": "doctype",
+					"name": "Delovni Nalog Interni",
+				},
+				{
+					"type": "doctype",
+					"name": "Izdelki Formis",
+				},
+                {
+					"type": "doctype",
+					"name": "Kalkulacija Izdelki",
 				},
 			]
 		},

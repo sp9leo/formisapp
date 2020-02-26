@@ -46,10 +46,7 @@ def get_data():
 					"type": "doctype",
 					"name": "Dashboard Chart Source",
 				},
-                {
-					"type": "doctype",
-					"name": "Delovni Nalog",
-				},
+                
 			]
 		},
         {

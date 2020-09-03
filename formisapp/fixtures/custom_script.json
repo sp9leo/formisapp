@@ -53,17 +53,17 @@
         "parenttype": null,
         "script": "cur_frm.add_fetch(\"posta\", \"post_number\", \"pincode\");\ncur_frm.add_fetch(\"posta\", \"kraj\", \"city\");"
     },
-    //  {
-    //   "docstatus": 0,
-    //   "doctype": "Custom Script",
-    //   "dt": "Quotation",
-    //   "modified": "2016-11-22 12:55:59.906297",
-    //   "name": "Quotation-Client",
-    //   "parent": null,
-    //   "parentfield": null,
-    //   "parenttype": null,
-    //   "script": "frappe.ui.form.on(\"Quotation\", \"stock\", function(frm) {\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function() {\nvar s= frappe.model.get_doc(\"Kalkulacija stranke\", frm.doc.stock);\nfrm.set_value(\"customer\", s.customer);\nfrm.set_value(\"izdelek\", s.izdelek);\nfrm.set_value(\"opis\", s.opis);\nfrm.set_value(\"qty\", s.qty);\n\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function(index){\n\nd = frm.add_child(\"items\");\nf = frm.add_child(\"items\");\nif(s.sekunde==1){f.qty=(s.qty*s.razrez)/60;} else{f.qty=(s.qty*s.razrez);}\nf.item_code=\"Razrez laserski\";\nd.item_code= s.doc_1;\nd.item_name= s.item;\nd.qty=s.area_total;\nd.description=d.item_name;\nf.description=s.izdelek\nf.item_name=f.item_code\nd.rate=s.price;\nf.rate=s.work_price\n\ncur_frm.refresh_field(\"items\");\n})\n});\n});\n"
-    //  },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Quotation",
+        "modified": "2016-11-22 12:55:59.906297",
+        "name": "Quotation-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "frappe.ui.form.on(\"Quotation\", \"stock\", function(frm) {\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function() {\nvar s= frappe.model.get_doc(\"Kalkulacija stranke\", frm.doc.stock);\nfrm.set_value(\"customer\", s.customer);\nfrm.set_value(\"izdelek\", s.izdelek);\nfrm.set_value(\"opis\", s.opis);\nfrm.set_value(\"qty\", s.qty);\n\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function(index){\n\nd = frm.add_child(\"items\");\nf = frm.add_child(\"items\");\nif(s.sekunde==1){f.qty=(s.qty*s.razrez)/60;} else{f.qty=(s.qty*s.razrez);}\nf.item_code=\"Razrez laserski\";\nd.item_code= s.doc_1;\nd.item_name= s.item;\nd.qty=s.area_total;\nd.description=d.item_name;\nf.description=s.izdelek\nf.item_name=f.item_code\nd.rate=s.price;\nf.rate=s.work_price\n\ncur_frm.refresh_field(\"items\");\n})\n});\n});\n"
+    },
     {
         "docstatus": 0,
         "doctype": "Custom Script",

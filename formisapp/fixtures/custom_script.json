@@ -1,90 +1,89 @@
-[
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Work Order",
-  "modified": "2020-01-31 00:34:42.653383",
-  "name": "Work Order-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "frappe.ui.form.on('Work Order', 'onload', function(frm){\n { frm.set_value(\"skip_transfer\",1);}\n});"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Sales Order",
-  "modified": "2020-02-04 22:15:53.313623",
-  "name": "Sales Order-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "\nfrappe.ui.form.on('Sales Order', 'onload', function(frm){\n if (frm.doc.__islocal) { frm.set_value(\"delivery_date\", frappe.datetime.add_days(frappe.datetime.nowdate(), 7));}\n});\nfrappe.ui.form.on('Sales Order', 'onload', function(frm){\n   if (frm.doc.__islocal) { frm.set_value(\"veljavnost\", frappe.datetime.add_days(frappe.datetime.nowdate(), 7));}\n});\n"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Sales Invoice",
-  "modified": "2020-02-25 10:48:43.277536",
-  "name": "Sales Invoice-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "//frappe.ui.form.on('Sales Invoice', {\n//\tonload(frm) {\n//\t    if (cur_frm.doc.selling_price_list.match(/^.*Konsignacija$/)) {msgprint('Konsignacijski ra\u010dun, preveri konsignacijsko skladi\u0161\u010de');}\n//\t\tcur_frm.fields_dict.items.grid.toggle_reqd(\"warehouse\",1);\n//\t    }\t\t\n//});\nfrappe.ui.form.on(\"Sales Invoice\", \"refresh\", function(frm) {\nlet sales_orders = [];\n$.each(frm.doc.items, function(idx, row) {\nin_list(sales_orders, row.sales_order) ? \"\": sales_orders.push(row.sales_order)});\nfrm.set_value(\"sales_order\", sales_orders.join(\", \"))});\n\nfrappe.ui.form.on(\"Sales Invoice\", \"refresh\", function(frm) {\nlet delivery_notes = [];\n$.each(frm.doc.items, function(idx, row) {\nin_list(delivery_notes, row.delivery_note) ? \"\": delivery_notes.push(row.delivery_note)});\nfrm.set_value(\"delivery_note\", delivery_notes.join(\", \"))});"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Delivery Note",
-  "modified": "2020-04-15 14:07:01.242382",
-  "name": "Delivery Note-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "frappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"datum_dostave\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\nfrappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"nacin_dostave\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\nfrappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"potrdilo\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\n\nfrappe.ui.form.on('Delivery Note', \"validate\", function(frm) {\n\t {\n\t    if (frm.doc.selling_price_list.match(/^.*Konsignacija$/)) {msgprint('Izberi konsignacijsko skladi\u0161\u010de');}\n\t\t//frm.fields_dict.items.grid.toggle_reqd(\"warehouse\",1);\n\t\t//frm.fields_dict.items.grid.toggle_reqd(\"target_warehouse\",1);\n\t\t\n\t}\n});\n\nfrappe.ui.form.on(\"Delivery Note\", \"validate\", function(frm) {\nlet sales_orders = [];\n$.each(frm.doc.items, function(idx, row) {\n    in_list(sales_orders, row.against_sales_order) ? \"\": sales_orders.push(row.against_sales_order)});\nfrm.set_value(\"so_no\", sales_orders.join(\",\"))});\n\n\nfrappe.ui.form.on('Delivery Note',  'validate',  function(frm) {\n    if (frm.doc.__islocal && frm.doc.nacin_dostave == \"Po\u0161ta Slovenije\") {\n        frm.set_value(\"naming_series\", \"POSTA-.YY.-.##\");\n       \n    } \n});"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Address",
-  "modified": "2016-11-03 23:14:34.032335",
-  "name": "Address-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "cur_frm.add_fetch(\"posta\", \"post_number\", \"pincode\");\ncur_frm.add_fetch(\"posta\", \"kraj\", \"city\");"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Quotation",
-  "modified": "2016-11-22 12:55:59.906297",
-  "name": "Quotation-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "frappe.ui.form.on(\"Quotation\", \"stock\", function(frm) {\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function() {\nvar s= frappe.model.get_doc(\"Kalkulacija stranke\", frm.doc.stock);\nfrm.set_value(\"customer\", s.customer);\nfrm.set_value(\"izdelek\", s.izdelek);\nfrm.set_value(\"opis\", s.opis);\nfrm.set_value(\"qty\", s.qty);\n\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function(index){\n\nd = frm.add_child(\"items\");\nf = frm.add_child(\"items\");\nif(s.sekunde==1){f.qty=(s.qty*s.razrez)/60;} else{f.qty=(s.qty*s.razrez);}\nf.item_code=\"Razrez laserski\";\nd.item_code= s.doc_1;\nd.item_name= s.item;\nd.qty=s.area_total;\nd.description=d.item_name;\nf.description=s.izdelek\nf.item_name=f.item_code\nd.rate=s.price;\nf.rate=s.work_price\n\ncur_frm.refresh_field(\"items\");\n})\n});\n});\n"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Journal Entry",
-  "modified": "2020-03-02 11:54:28.454174",
-  "name": "Journal Entry-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "/*var datum = frappe.datetime.nowdate();*/\nvar monthyear = moment().format(\"MM/YYYY\");\nvar year = moment().format(\"YYYY\");\nvar firstDay = moment().subtract(1,\"months\").startOf(\"month\").format(\"DD.MM\");\nvar lastDay = moment().subtract(1, \"months\").endOf(\"month\").format(\"DD.MM.YYYY\");\nvar lastmonth = moment().subtract(1, 'months').format('MM');\n\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Pla\u010dilo prispevkov\") {\n\t\tif (frm.doc.cheque_no === undefined){\n\n\t\tfrm.set_value(\"cheque_no\", \"Pla\u010dilo prispevkov \" + lastmonth +\"/\"+ year);\n\t\tfrm.set_value(\"user_remark\", \"Prispevki PIZ, ZZZS, STV, ZAP od \" + firstDay + \" do \" + lastDay);\n\t\tvalidated = true;\n\t}\n\t}\n});\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Provizija\") {\n\t\tif (frm.doc.cheque_no === undefined){\n\n\t\tfrm.set_value(\"cheque_no\", \"Vodenje ra\u010duna \" + lastmonth +\"/\"+ year);\n\t\tfrm.set_value(\"user_remark\", \"Stro\u0161ki vodenja ra\u010duna od \" + firstDay + \" do \" + lastDay);\n\t\tvalidated = true;\n\t}\n}\n});\n/*\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Pla\u010dilo prispevkov\") {\n\t\t//msgprint(\"Na\u010din pla\u010dila je bil spremenjen v GOTOVINA!\");\n\t\tfrm.set_value(\"user_remark\", \"Pla\u010dilo prispevkov od___ Prispevki PIZ, ZZ, STV, ZAP\");\n\t\tvalidated = true;\n\t}\n});\n\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Provizija\") {\n\t\t//msgprint(\"Na\u010din pla\u010dila je bil spremenjen v GOTOVINA!\");\n\t\tfrm.set_value(\"cheque_no\", \"Vodenje ra\u010duna __/2017\");\n\t\tvalidated = true;\n\t}\n});\n*/\n"
- },
- {
-  "docstatus": 0,
-  "doctype": "Custom Script",
-  "dt": "Payment Entry",
-  "modified": "2020-04-14 23:04:55.921712",
-  "name": "Payment Entry-Client",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "script": "frappe.ui.form.on(\"Payment Entry\", \"validate\", function(frm) {\r\n    let references = [];\r\n    $.each(frm.doc.references, function(idx, row) {\r\n        in_list(references, row.reference_name) ? \"\" : references.push(row.reference_name)    });\r\n    if (frm.doc.__islocal && !frm.doc.reference_no) {\r\n        var ref;\r\n        var refid;\r\n        ref = references.toString().replace(/-/g, \"\").substr(2);\r\n        refid = references.toString().substr(0, 2);\r\n        if (refid == \"RA\") {\r\n            frm.set_value(\"reference_no\", \"SI00\" + ref);\r\n        } else frm.set_value(\"reference_no\", \"SI90\" + ref);\r\n        if (!frm.doc.mode_of_payment) {\r\n            frm.set_value(\"mode_of_payment\", \"Nakazilo na TRR \");\r\n            frm.set_value(\"bank_account\", \"Formis - Banka Intesa Sanpaolo\");\r\n        }\r\n    }\r\n\r\n});"
- }
+[{
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Work Order",
+        "modified": "2020-01-31 00:34:42.653383",
+        "name": "Work Order-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "frappe.ui.form.on('Work Order', 'onload', function(frm){\n { frm.set_value(\"skip_transfer\",1);}\n});"
+    },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Sales Order",
+        "modified": "2020-02-04 22:15:53.313623",
+        "name": "Sales Order-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "\nfrappe.ui.form.on('Sales Order', 'onload', function(frm){\n if (frm.doc.__islocal) { frm.set_value(\"delivery_date\", frappe.datetime.add_days(frappe.datetime.nowdate(), 7));}\n});\nfrappe.ui.form.on('Sales Order', 'onload', function(frm){\n   if (frm.doc.__islocal) { frm.set_value(\"veljavnost\", frappe.datetime.add_days(frappe.datetime.nowdate(), 7));}\n});\n"
+    },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Sales Invoice",
+        "modified": "2020-02-25 10:48:43.277536",
+        "name": "Sales Invoice-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "//frappe.ui.form.on('Sales Invoice', {\n//\tonload(frm) {\n//\t    if (cur_frm.doc.selling_price_list.match(/^.*Konsignacija$/)) {msgprint('Konsignacijski ra\u010dun, preveri konsignacijsko skladi\u0161\u010de');}\n//\t\tcur_frm.fields_dict.items.grid.toggle_reqd(\"warehouse\",1);\n//\t    }\t\t\n//});\nfrappe.ui.form.on(\"Sales Invoice\", \"refresh\", function(frm) {\nlet sales_orders = [];\n$.each(frm.doc.items, function(idx, row) {\nin_list(sales_orders, row.sales_order) ? \"\": sales_orders.push(row.sales_order)});\nfrm.set_value(\"sales_order\", sales_orders.join(\", \"))});\n\nfrappe.ui.form.on(\"Sales Invoice\", \"refresh\", function(frm) {\nlet delivery_notes = [];\n$.each(frm.doc.items, function(idx, row) {\nin_list(delivery_notes, row.delivery_note) ? \"\": delivery_notes.push(row.delivery_note)});\nfrm.set_value(\"delivery_note\", delivery_notes.join(\", \"))});"
+    },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Delivery Note",
+        "modified": "2020-04-15 14:07:01.242382",
+        "name": "Delivery Note-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "frappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"datum_dostave\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\nfrappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"nacin_dostave\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\nfrappe.ui.form.on(\"Delivery Note\", {\n    refresh: function(frm) {\n        // use the __islocal value of doc, to check if the doc is saved or not\n        frm.set_df_property(\"potrdilo\", \"read_only\", frm.doc.status==\"Completed\");\n    }\n});\n\nfrappe.ui.form.on('Delivery Note', \"validate\", function(frm) {\n\t {\n\t    if (frm.doc.selling_price_list.match(/^.*Konsignacija$/)) {msgprint('Izberi konsignacijsko skladi\u0161\u010de');}\n\t\t//frm.fields_dict.items.grid.toggle_reqd(\"warehouse\",1);\n\t\t//frm.fields_dict.items.grid.toggle_reqd(\"target_warehouse\",1);\n\t\t\n\t}\n});\n\nfrappe.ui.form.on(\"Delivery Note\", \"validate\", function(frm) {\nlet sales_orders = [];\n$.each(frm.doc.items, function(idx, row) {\n    in_list(sales_orders, row.against_sales_order) ? \"\": sales_orders.push(row.against_sales_order)});\nfrm.set_value(\"so_no\", sales_orders.join(\",\"))});\n\n\nfrappe.ui.form.on('Delivery Note',  'validate',  function(frm) {\n    if (frm.doc.__islocal && frm.doc.nacin_dostave == \"Po\u0161ta Slovenije\") {\n        frm.set_value(\"naming_series\", \"POSTA-.YY.-.##\");\n       \n    } \n});"
+    },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Address",
+        "modified": "2016-11-03 23:14:34.032335",
+        "name": "Address-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "cur_frm.add_fetch(\"posta\", \"post_number\", \"pincode\");\ncur_frm.add_fetch(\"posta\", \"kraj\", \"city\");"
+    },
+    //  {
+    //   "docstatus": 0,
+    //   "doctype": "Custom Script",
+    //   "dt": "Quotation",
+    //   "modified": "2016-11-22 12:55:59.906297",
+    //   "name": "Quotation-Client",
+    //   "parent": null,
+    //   "parentfield": null,
+    //   "parenttype": null,
+    //   "script": "frappe.ui.form.on(\"Quotation\", \"stock\", function(frm) {\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function() {\nvar s= frappe.model.get_doc(\"Kalkulacija stranke\", frm.doc.stock);\nfrm.set_value(\"customer\", s.customer);\nfrm.set_value(\"izdelek\", s.izdelek);\nfrm.set_value(\"opis\", s.opis);\nfrm.set_value(\"qty\", s.qty);\n\nfrappe.model.with_doc(\"Kalkulacija stranke\", frm.doc.stock, function(index){\n\nd = frm.add_child(\"items\");\nf = frm.add_child(\"items\");\nif(s.sekunde==1){f.qty=(s.qty*s.razrez)/60;} else{f.qty=(s.qty*s.razrez);}\nf.item_code=\"Razrez laserski\";\nd.item_code= s.doc_1;\nd.item_name= s.item;\nd.qty=s.area_total;\nd.description=d.item_name;\nf.description=s.izdelek\nf.item_name=f.item_code\nd.rate=s.price;\nf.rate=s.work_price\n\ncur_frm.refresh_field(\"items\");\n})\n});\n});\n"
+    //  },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Journal Entry",
+        "modified": "2020-03-02 11:54:28.454174",
+        "name": "Journal Entry-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "/*var datum = frappe.datetime.nowdate();*/\nvar monthyear = moment().format(\"MM/YYYY\");\nvar year = moment().format(\"YYYY\");\nvar firstDay = moment().subtract(1,\"months\").startOf(\"month\").format(\"DD.MM\");\nvar lastDay = moment().subtract(1, \"months\").endOf(\"month\").format(\"DD.MM.YYYY\");\nvar lastmonth = moment().subtract(1, 'months').format('MM');\n\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Pla\u010dilo prispevkov\") {\n\t\tif (frm.doc.cheque_no === undefined){\n\n\t\tfrm.set_value(\"cheque_no\", \"Pla\u010dilo prispevkov \" + lastmonth +\"/\"+ year);\n\t\tfrm.set_value(\"user_remark\", \"Prispevki PIZ, ZZZS, STV, ZAP od \" + firstDay + \" do \" + lastDay);\n\t\tvalidated = true;\n\t}\n\t}\n});\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Provizija\") {\n\t\tif (frm.doc.cheque_no === undefined){\n\n\t\tfrm.set_value(\"cheque_no\", \"Vodenje ra\u010duna \" + lastmonth +\"/\"+ year);\n\t\tfrm.set_value(\"user_remark\", \"Stro\u0161ki vodenja ra\u010duna od \" + firstDay + \" do \" + lastDay);\n\t\tvalidated = true;\n\t}\n}\n});\n/*\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Pla\u010dilo prispevkov\") {\n\t\t//msgprint(\"Na\u010din pla\u010dila je bil spremenjen v GOTOVINA!\");\n\t\tfrm.set_value(\"user_remark\", \"Pla\u010dilo prispevkov od___ Prispevki PIZ, ZZ, STV, ZAP\");\n\t\tvalidated = true;\n\t}\n});\n\nfrappe.ui.form.on(\"Journal Entry\", \"voucher_type\", function (frm) {\n\tif (frm.doc.voucher_type == \"Provizija\") {\n\t\t//msgprint(\"Na\u010din pla\u010dila je bil spremenjen v GOTOVINA!\");\n\t\tfrm.set_value(\"cheque_no\", \"Vodenje ra\u010duna __/2017\");\n\t\tvalidated = true;\n\t}\n});\n*/\n"
+    },
+    {
+        "docstatus": 0,
+        "doctype": "Custom Script",
+        "dt": "Payment Entry",
+        "modified": "2020-04-14 23:04:55.921712",
+        "name": "Payment Entry-Client",
+        "parent": null,
+        "parentfield": null,
+        "parenttype": null,
+        "script": "frappe.ui.form.on(\"Payment Entry\", \"validate\", function(frm) {\r\n    let references = [];\r\n    $.each(frm.doc.references, function(idx, row) {\r\n        in_list(references, row.reference_name) ? \"\" : references.push(row.reference_name)    });\r\n    if (frm.doc.__islocal && !frm.doc.reference_no) {\r\n        var ref;\r\n        var refid;\r\n        ref = references.toString().replace(/-/g, \"\").substr(2);\r\n        refid = references.toString().substr(0, 2);\r\n        if (refid == \"RA\") {\r\n            frm.set_value(\"reference_no\", \"SI00\" + ref);\r\n        } else frm.set_value(\"reference_no\", \"SI90\" + ref);\r\n        if (!frm.doc.mode_of_payment) {\r\n            frm.set_value(\"mode_of_payment\", \"Nakazilo na TRR \");\r\n            frm.set_value(\"bank_account\", \"Formis - Banka Intesa Sanpaolo\");\r\n        }\r\n    }\r\n\r\n});"
+    }
 ]

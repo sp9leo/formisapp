@@ -17,14 +17,14 @@ fixtures = ["Custom Script", "Print Format"]
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/formisapp/css/formisapp.css"
-app_include_js = "/public/js/formisapp.js"
+app_include_js = "public/js/formisapp.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/formisapp/css/formisapp.css"
 # web_include_js = "/assets/formisapp/js/formisapp.js"
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+# page_js = {"page" : "public/js/formisapp.js"}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}

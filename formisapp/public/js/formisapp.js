@@ -46,12 +46,12 @@ frappe.ui.form.CustomerQuickEntryForm = frappe.ui.form.QuickEntryForm.extend({
 			label: __("Address Line 2"),
 			fieldname: "address_line2",
 			fieldtype: "Data"
+			
 		},
 		{
 			label: __("Pošta"),
 			fieldname: "pincode",
-			fieldtype: "Link",
-			options: "PostneStevilke"
+			fieldtype: "Data",
 			
 		},
 		{
@@ -60,13 +60,14 @@ frappe.ui.form.CustomerQuickEntryForm = frappe.ui.form.QuickEntryForm.extend({
 		{
 			label: __("Kraj"),
 			fieldname: "city",
-			fieldtype: "Data"
+			fieldtype: "Data",
+			
 		},
-		{
+		/* {
 			label: __("State"),
 			fieldname: "state",
 			fieldtype: "Data"
-		},
+		}, */
 		{
 			label: __("Država"),
 			fieldname: "country",
@@ -83,8 +84,6 @@ frappe.ui.form.CustomerQuickEntryForm = frappe.ui.form.QuickEntryForm.extend({
 
         return variant_fields;
 	},
-    
-    
-
+  
     
 	});

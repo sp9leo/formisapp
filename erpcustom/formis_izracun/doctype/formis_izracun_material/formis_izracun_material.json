@@ -1,0 +1,208 @@
+{
+ "actions": [],
+ "autoname": "[mat.####]",
+ "creation": "2022-03-23 10:46:21.051451",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "material_html",
+  "material",
+  "item_code",
+  "a",
+  "velikost",
+  "x",
+  "y",
+  "material_discount",
+  "povr\u0161ina",
+  "area",
+  "area_cm",
+  "area_total",
+  "znesek_materiala",
+  "material_kos",
+  "material_cena_kos",
+  "material_total",
+  "material_column",
+  "buying_price",
+  "selling_price",
+  "last_purchase_rate",
+  "material_podrobno_section",
+  "item_name",
+  "item_uom",
+  "valuation_rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "material",
+   "fieldtype": "Section Break",
+   "label": "Material"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vrsta materiala",
+   "options": "Item"
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item name"
+  },
+  {
+   "fetch_from": "item_code.stock_uom",
+   "fieldname": "item_uom",
+   "fieldtype": "Data",
+   "label": "item_uom",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "buying_price",
+   "fieldtype": "Currency",
+   "label": "Nakupna cena",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "selling_price",
+   "fieldtype": "Currency",
+   "label": "Prodajna cena",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_code.valuation_rate",
+   "fieldname": "valuation_rate",
+   "fieldtype": "Currency",
+   "label": "Valuation rate",
+   "read_only": 1
+  },
+  {
+   "description": "Cena za UOM. pri plo\u0161\u010dah je to cena na M2",
+   "fetch_from": "item_code.last_purchase_rate",
+   "fieldname": "last_purchase_rate",
+   "fieldtype": "Currency",
+   "label": "Zadnja nakupna",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "a",
+   "fieldtype": "Section Break",
+   "label": "Dimenzije"
+  },
+  {
+   "fieldname": "velikost",
+   "fieldtype": "Column Break",
+   "label": "Velikost"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "description": "cm",
+   "fieldname": "x",
+   "fieldtype": "Int",
+   "label": "\u0160irina",
+   "precision": "0"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "description": "cm",
+   "fieldname": "y",
+   "fieldtype": "Int",
+   "label": "Vi\u0161ina"
+  },
+  {
+   "fieldname": "povr\u0161ina",
+   "fieldtype": "Column Break",
+   "label": "Povr\u0161ina"
+  },
+  {
+   "description": "povr\u0161ina v m\u00b2",
+   "fieldname": "area",
+   "fieldtype": "Float",
+   "label": "Area m\u00b2",
+   "read_only": 1
+  },
+  {
+   "description": "povr\u0161ina v cm\u00b2",
+   "fieldname": "area_cm",
+   "fieldtype": "Float",
+   "label": "Area cm\u00b2",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "description": "povr\u0161ina na kos*koli\u010dina",
+   "fieldname": "area_total",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Skupna povr\u0161ina",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "znesek_materiala",
+   "fieldtype": "Column Break",
+   "label": "Stro\u0161ek materiala"
+  },
+  {
+   "description": "Izra\u010dun po nabavni ceni",
+   "fieldname": "material_kos",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Stro\u0161ek materiala/kos",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "description": "Izra\u010dun po prodajni ceni",
+   "fieldname": "material_cena_kos",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Znesek materiala/kos",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "material_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Skupaj stro\u0161ek materiala",
+   "read_only": 1
+  },
+  {
+   "fieldname": "material_discount",
+   "fieldtype": "Int",
+   "label": "Popust"
+  },
+  {
+   "fieldname": "material_column",
+   "fieldtype": "Column Break",
+   "label": "Material cene"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "material_podrobno_section",
+   "fieldtype": "Section Break",
+   "label": "Material podrobno"
+  },
+  {
+   "fieldname": "material_html",
+   "fieldtype": "HTML"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2022-04-05 17:06:32.034627",
+ "modified_by": "Administrator",
+ "module": "Erpcustom",
+ "name": "Formis Izracun Material",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

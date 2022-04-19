@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-03-11 18:35:36.152868",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posta",
+  "kraj"
+ ],
+ "fields": [
+  {
+   "fieldname": "posta",
+   "fieldtype": "Data",
+   "label": "Posta"
+  },
+  {
+   "fieldname": "kraj",
+   "fieldtype": "Data",
+   "label": "Kraj"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-03-11 18:35:36.152868",
+ "modified_by": "Administrator",
+ "module": "Erpcustom",
+ "name": "Posta",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

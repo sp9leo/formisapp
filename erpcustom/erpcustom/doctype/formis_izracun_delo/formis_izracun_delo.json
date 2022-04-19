@@ -1,0 +1,162 @@
+{
+ "actions": [],
+ "creation": "2022-03-23 11:04:09.922351",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "vrsta",
+  "column_break_16",
+  "work_total",
+  "section_break_2",
+  "time",
+  "razrez_min",
+  "razrez_sec",
+  "column_break_26",
+  "work_kos",
+  "graviranje",
+  "engrave_x",
+  "engrave_y",
+  "engrave_area",
+  "qty",
+  "column_break_14",
+  "engrave_cm",
+  "per_piece",
+  "engrave_kos",
+  "delo_html",
+  "graviranje_result"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "description": "\u0161t. minut oz. sekund",
+   "fieldname": "razrez_min",
+   "fieldtype": "Int",
+   "hide_days": 1,
+   "label": "Minut"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "razrez_sec",
+   "fieldtype": "Int",
+   "label": "Sekund"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work_kos",
+   "fieldtype": "Currency",
+   "label": "Razrez/kos",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.vrsta ==\"Graviranje\"",
+   "fieldname": "graviranje",
+   "fieldtype": "Section Break",
+   "label": "Graviranje"
+  },
+  {
+   "fieldname": "engrave_x",
+   "fieldtype": "Data",
+   "label": "cm X"
+  },
+  {
+   "fieldname": "engrave_y",
+   "fieldtype": "Data",
+   "label": "cm Y"
+  },
+  {
+   "fieldname": "engrave_area",
+   "fieldtype": "Data",
+   "label": "Graviranje povr\u0161ina"
+  },
+  {
+   "fieldname": "vrsta",
+   "fieldtype": "Select",
+   "label": "vrsta",
+   "options": "Razrez\nGraviranje"
+  },
+  {
+   "depends_on": "eval: doc.vrsta == \"Razrez\"",
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Razrez"
+  },
+  {
+   "fieldname": "time",
+   "fieldtype": "Column Break",
+   "label": "\u010cas"
+  },
+  {
+   "depends_on": "per_piece",
+   "fieldname": "engrave_kos",
+   "fieldtype": "Currency",
+   "label": "Graviranje/kos",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "engrave_cm",
+   "fieldtype": "Currency",
+   "label": "Graviranje/cm",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "per_piece",
+   "description": "Trenutna cena + variabila",
+   "fieldname": "graviranje_result",
+   "fieldtype": "Data",
+   "label": "Izracun graviranje",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "per_piece",
+   "fieldtype": "Check",
+   "label": "Na kos"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Data",
+   "label": "Koli\u010dina"
+  },
+  {
+   "fieldname": "delo_html",
+   "fieldtype": "HTML"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "work_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total",
+   "options": "currency",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2022-04-05 14:44:17.381228",
+ "modified_by": "Administrator",
+ "module": "Erpcustom",
+ "name": "Formis Izracun Delo",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

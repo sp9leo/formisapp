@@ -1,0 +1,160 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Prompt",
+ "creation": "2022-04-08 01:51:12.654931",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naziv",
+  "naziv_storitve",
+  "column_break_2",
+  "parent_dostava_cenik",
+  "skupina_name",
+  "column_break_4",
+  "section_break_5",
+  "cena",
+  "izvajalec_storitve",
+  "is_company",
+  "te\u017ea_column",
+  "teza_od",
+  "teza_do",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "naziv_storitve",
+   "fieldtype": "Data",
+   "label": "Naziv storitve",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "izvajalec_storitve",
+   "fieldtype": "Link",
+   "label": "Izvajalec storitve",
+   "options": "Dostava Cenik"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Dostava Cenik"
+  },
+  {
+   "fieldname": "parent_dostava_cenik",
+   "fieldtype": "Link",
+   "label": "Skupina",
+   "options": "Dostava Cenik"
+  },
+  {
+   "fieldname": "cena",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Cena",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "teza_od",
+   "fieldtype": "Int",
+   "label": "Od"
+  },
+  {
+   "fieldname": "teza_do",
+   "fieldtype": "Int",
+   "label": "Do"
+  },
+  {
+   "fieldname": "te\u017ea_column",
+   "fieldtype": "Column Break",
+   "label": "Te\u017ea"
+  },
+  {
+   "fieldname": "naziv",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Naziv",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "parent_dostava_cenik.naziv",
+   "fieldname": "skupina_name",
+   "fieldtype": "Data",
+   "label": "Naziv skupine"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_company",
+   "fieldtype": "Check",
+   "label": "Podjetje"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2022-04-11 20:24:49.591051",
+ "modified_by": "Administrator",
+ "module": "Erpcustom",
+ "name": "Dostava Cenik",
+ "nsm_parent_field": "parent_dostava_cenik",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "naziv"
+}

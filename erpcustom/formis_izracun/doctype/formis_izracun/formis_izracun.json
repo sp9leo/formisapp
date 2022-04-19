@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "autoname": "IZR-.###",
+ "creation": "2022-03-05 11:20:28.843377",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "stranka",
+  "lead",
+  "column_break_5",
+  "datum",
+  "section_break_5",
+  "name1",
+  "opis",
+  "izra\u010dun_section",
+  "total",
+  "calculate_btn",
+  "izracun_html",
+  "material_section",
+  "material",
+  "material_total",
+  "delo_section",
+  "delo",
+  "delo_total"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Izdelek"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Table",
+   "label": "Material",
+   "options": "Formis Izracun Material"
+  },
+  {
+   "fieldname": "delo",
+   "fieldtype": "Table",
+   "label": "Delo",
+   "options": "Formis Izracun Delo"
+  },
+  {
+   "fieldname": "material_total",
+   "fieldtype": "Currency",
+   "label": "Material skupaj",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "delo_total",
+   "fieldtype": "Currency",
+   "label": "Delo skupaj",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "calculate_btn",
+   "fieldtype": "Button",
+   "label": "Izra\u010dun"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "in_preview": 1,
+   "label": "Skupaj",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "material_section",
+   "fieldtype": "Section Break",
+   "label": "Material"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "delo_section",
+   "fieldtype": "Section Break",
+   "label": "Delo"
+  },
+  {
+   "fieldname": "izra\u010dun_section",
+   "fieldtype": "Column Break",
+   "label": "Izra\u010dun"
+  },
+  {
+   "bold": 1,
+   "fieldname": "stranka",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Stranka",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Lead"
+  },
+  {
+   "fieldname": "opis",
+   "fieldtype": "Small Text",
+   "label": "Opis"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "datum",
+   "fieldtype": "Date",
+   "label": "Datum"
+  },
+  {
+   "fieldname": "izracun_html",
+   "fieldtype": "HTML"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "links": [],
+ "modified": "2022-04-15 03:25:04.003030",
+ "modified_by": "Administrator",
+ "module": "Erpcustom",
+ "name": "Formis Izracun",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_preview_popup": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "name1"
+}

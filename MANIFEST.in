@@ -4,15 +4,15 @@ include *.json
 include *.md
 include *.py
 include *.txt
-recursive-include erpcustom *.css
-recursive-include erpcustom *.csv
-recursive-include erpcustom *.html
-recursive-include erpcustom *.ico
-recursive-include erpcustom *.js
-recursive-include erpcustom *.json
-recursive-include erpcustom *.md
-recursive-include erpcustom *.png
-recursive-include erpcustom *.py
-recursive-include erpcustom *.svg
-recursive-include erpcustom *.txt
-recursive-exclude erpcustom *.pyc
+recursive-include formisapp *.css
+recursive-include formisapp *.csv
+recursive-include formisapp *.html
+recursive-include formisapp *.ico
+recursive-include formisapp *.js
+recursive-include formisapp *.json
+recursive-include formisapp *.md
+recursive-include formisapp *.png
+recursive-include formisapp *.py
+recursive-include formisapp *.svg
+recursive-include formisapp *.txt
+recursive-exclude formisapp *.pyc
